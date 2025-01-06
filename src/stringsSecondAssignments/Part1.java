@@ -128,6 +128,8 @@ public class Part1 {
     public static void main(String[] args) {
         //testFindStopCodon();
         //testFindGene();
-        testPrintAllGenes();
+        //testPrintAllGenes();
+        System.out.println(findGene("ATGCTAACTAGCTGACTAAT"));
+
     }
 }
