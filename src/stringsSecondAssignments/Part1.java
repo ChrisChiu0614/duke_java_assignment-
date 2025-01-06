@@ -11,7 +11,7 @@ public class Part1 {
         String lowerCodon = stopCodon.toLowerCase();
         int currIndex = lowerDNA.indexOf(lowerCodon,startIndex+3);
         while(currIndex!=-1){
-            if(currIndex%3==0){
+            if((currIndex-startIndex)%3==0){
                 return currIndex;
             }else{
                 startIndex = currIndex;
@@ -85,8 +85,6 @@ public class Part1 {
                 startIndex = lowerDNA.indexOf(lowerStartCodon, startIndex + 3);
                 continue;
             }
-            System.out.println("startIndex="+startIndex);
-            System.out.println("minStopIndex="+minStopIndex);
             System.out.println(dna.substring(startIndex, minStopIndex + 3));
             startIndex = lowerDNA.indexOf(lowerStartCodon, minStopIndex + 3);
 
