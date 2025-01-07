@@ -1,4 +1,4 @@
-package stringsFirstAssignments;
+package src.stringsFirstAssignments;
 
 import edu.duke.URLResource;
 

@@ -1,6 +1,5 @@
-package stringsThirdAssignments;
+package src.stringsThirdAssignments;
 
-import edu.duke.FileResource;
 import edu.duke.StorageResource;
 import edu.duke.URLResource;
 

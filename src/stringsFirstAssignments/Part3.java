@@ -1,4 +1,4 @@
-package stringsFirstAssignments;
+package src.stringsFirstAssignments;
 
 public class Part3 {
 

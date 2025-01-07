@@ -1,4 +1,4 @@
-package stringsSecondAssignments;
+package src.stringsSecondAssignments;
 
 public class debugingPart1 {
     public void findAbc(String input) {

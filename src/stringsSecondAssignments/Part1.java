@@ -1,4 +1,4 @@
-package stringsSecondAssignments;
+package src.stringsSecondAssignments;
 
 public class Part1 {
     final static String TAA = "TAA";

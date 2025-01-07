@@ -1,4 +1,4 @@
-package perimeter_quiz;
+package src.perimeter_quiz;
 
 import edu.duke.*;
 
