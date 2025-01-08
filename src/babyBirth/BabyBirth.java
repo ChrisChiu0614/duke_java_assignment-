@@ -85,27 +85,28 @@ public class BabyBirth {
         }
 
     }
-    public static int getYearByfile(File f){
+    public static int getYearByFile(File f){
         String fileName = f.getName();
         int index = fileName.indexOf("yob");
         if(index==-1){
             return -1;
         }
-        return Integer.parseInt(fileName.substring(index+1,index+5));
+        return Integer.parseInt(fileName.substring(index+3,index+7));
     }
 
     public static int yearOfHighestRank(String name,String gender){
         DirectoryResource dr = new DirectoryResource();
-        int output = -1;
+        int bestRank = Integer.MAX_VALUE;
         for(File f : dr.selectedFiles()){
-            int year = getYearByfile(f);
+            int year = getYearByFile(f);
             int rank = getRank(year,name,gender);
-            if(rank>output){
-                output = rank;
+            if(rank!=-1 && rank<bestRank){
+                bestRank = rank;
+
             }
 
         }
-        return output;
+        return bestRank==Integer.MAX_VALUE?-1:bestRank;
     }
 
     public static void testTotalBirths(){
@@ -119,6 +120,8 @@ public class BabyBirth {
 //        System.out.println(rank);
 //        String name = getName(2012, 99,"F");
 //        System.out.println(name);
-        whatIsNameInYear("Isabella",2012,2014,"F");
+        //whatIsNameInYear("Isabella",2012,2014,"F");
+        int rankH = yearOfHighestRank("Mason","M");
+        System.out.println(rankH);
     }
 }
