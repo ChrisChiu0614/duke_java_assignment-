@@ -24,6 +24,12 @@ java assignment for duke
         1. Retrieve Specific Country Information: Find and display detailed export data for a given country, including exported items and their total export value.
         2. Find Countries Exporting Both Item A and Item B: Identify and list the countries that export both specified items.
         3. Identify High-Value Exporting Countries: Find and display countries whose total export value exceeds a specified threshold.
+    - Class Part2
+      - Create methods to achieve the following functionalities:
+        1. Retrieve the coldest temperature(s) from single file or multiple files.
+        2. Retrieve the lowest humidity(s) from single file or multiple files.
+        3. Retrieve the average temperature from single file.
+        4. Retrieve the average temperature from single file including only the data where the humidity is greater than 80.
 - Package:
     - csv
 
