@@ -11,9 +11,9 @@ public class Part1 {
         String info = countryInfo(parser,"Nauru");
         System.out.println(info);
 
-        listExportersTwoProducts(parser,"gold","diamonds");
+        listExportersTwoProducts(parser,"cotton","flowers");
         parser = fr.getCSVParser();
-        int num = numberOfExporters(parser,"gold");
+        int num = numberOfExporters(parser,"cocoa");
         System.out.println(num);
         parser = fr.getCSVParser();
         bigExporters(parser,"$999,999,999,999");

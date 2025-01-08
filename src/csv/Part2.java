@@ -81,7 +81,7 @@ public class Part2 {
             CSVRecord currRecord = coldestHourInFile(fr.getCSVParser());
             coldestRecord = coldestOfTwo(coldestRecord,currRecord);
             if(coldestRecord.get("TemperatureF").equals(currRecord.get("TemperatureF"))){
-                coldestFileName = file.getName();
+                coldestFileName = file.getParentFile() +"/"+ file.getName();
             }
 
         }
@@ -92,6 +92,9 @@ public class Part2 {
     public static CSVRecord coldestHourInFile(CSVParser parser){
         CSVRecord coldestRecord = null;
         for (CSVRecord record: parser){
+            if(record.get("TemperatureF").equals("-9999")){
+                continue;
+            }
             coldestRecord = coldestOfTwo(coldestRecord,record);
         }
         return coldestRecord;
@@ -110,12 +113,20 @@ public class Part2 {
     public static void testColdestHourInFile(){
         FileResource fr = new FileResource();
         CSVRecord coldestRecord = coldestHourInFile(fr.getCSVParser());
-        String output =  String.format("the coldest day is %s and occur in %s",coldestRecord.get("TemperatureF"),coldestRecord.get("TimeEST"));
+        String time = coldestRecord.isMapped("TimeEDT")?coldestRecord.get("TimeEDT"):coldestRecord.get("TimeEST");
+        String output =  String.format("the coldest day is %s and occur in %s",coldestRecord.get("TemperatureF"),time);
         System.out.println(output);
     }
 
     public static void testFileWithColdestTemperature(){
-        System.out.println(fileWithColdestTemperature());
+        String coldestTemperatureFileNamePath = fileWithColdestTemperature();
+        System.out.println(coldestTemperatureFileNamePath);
+        FileResource fr = new FileResource(coldestTemperatureFileNamePath);
+        CSVRecord coldestRecord = coldestHourInFile(fr.getCSVParser());
+        String time = coldestRecord.isMapped("TimeEDT")?coldestRecord.get("TimeEDT"):coldestRecord.get("TimeEST");
+        String output =  String.format("the coldest day is %s and occur in %s",coldestRecord.get("TemperatureF"),time);
+        System.out.println(output);
+
     }
 
     public static void testLowestHumidityInFile(){
@@ -154,11 +165,11 @@ public class Part2 {
         System.out.println(output);
     }
     public static void main(String[] args) {
+        testFileWithColdestTemperature();
         //testColdestHourInFile();
-        //testFileWithColdestTemperature();
         //testLowestHumidityInFile();
         //testLowestHumidityInManyFiles();
         //testAverageTemperatureInFile();
-        testAverageTemperatureWithHighHumidityInFile();
+        //testAverageTemperatureWithHighHumidityInFile();
     }
 }
