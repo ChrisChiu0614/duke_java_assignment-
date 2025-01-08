@@ -11,34 +11,31 @@ public class Part2 {
         double sum = 0;
         int size = 0;
         for (CSVRecord record: parser){
-            double temperature = Double.parseDouble(record.get("TemperatureF"));
-            String humidity = record.get("Humidity");
-            if(humidity.equals("N/A") || Double.parseDouble(humidity) < value){
-                continue;
+            String humidityData = record.get("Humidity");
+            double humidity = humidityData.equals("N/A")?0:Double.parseDouble(humidityData);
+            if(humidity>=value){
+                sum = calculateByTemperature(record,sum);
+                size++;
             }
-            double humidityValue = Double.parseDouble(humidity);
-            sum+=value;
-            size++;
         }
-        return sum/size;
+        double avg = sum/size;
+        return size==0?-1:avg;
     }
 
     public static double averageTemperatureInFile(CSVParser parser){
-        return averageValue(parser,"TemperatureF");
-    }
-
-
-
-    public static double averageValue(CSVParser parser, String averageColum){
         double sum = 0;
         int size = 0;
         for (CSVRecord record: parser){
-            String str = record.get(averageColum);
-            double value = Double.parseDouble(str);
-            sum+=value;
+            sum = calculateByTemperature(record,sum);
             size++;
         }
         return sum/size;
+    }
+
+    public static double calculateByTemperature(CSVRecord record, double currSum){
+        double temperature = Double.parseDouble(record.get("TemperatureF"));
+        return currSum+=temperature;
+
     }
 
     public static CSVRecord lowestHumidityInManyFiles(){
@@ -143,11 +140,25 @@ public class Part2 {
         System.out.println(output);
     }
 
+
+    public static void testAverageTemperatureWithHighHumidityInFile(){
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        double avg =  averageTemperatureWithHighHumidityInFile(parser,80);
+        String output = "";
+        if(avg!=-1){
+            output =  String.format("Average Temp when high Humidity is %.15f",avg);
+        }else{
+            output =  "No temperatures with that humidity";
+        }
+        System.out.println(output);
+    }
     public static void main(String[] args) {
         //testColdestHourInFile();
         //testFileWithColdestTemperature();
         //testLowestHumidityInFile();
         //testLowestHumidityInManyFiles();
-        testAverageTemperatureInFile();
+        //testAverageTemperatureInFile();
+        testAverageTemperatureWithHighHumidityInFile();
     }
 }
