@@ -6,8 +6,8 @@ import org.apache.commons.csv.*;
 import java.io.File;
 
 public class BabyBirth {
-    final static String PATH = "./src/babyBirth/testing";
-
+    //final static String PATH = "./src/babyBirth/testing";
+    final static String PATH = ".//src/babyBirth/us_babynames/us_babynames_by_year";
     public static void totalBirths(CSVParser parser) {
         int totalOfBoy = 0;
         int totalOfGirl = 0;
