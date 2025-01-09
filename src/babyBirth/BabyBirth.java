@@ -73,6 +73,26 @@ public class BabyBirth {
         return "NO NAME";
     }
 
+    public static int calculateTotalBirth(int stopRank, CSVParser parser, String gender) {
+        int sum = 0;
+        int index = 0;
+        for (CSVRecord row : parser) {
+            String genderInRow = row.get(1);
+            if (genderInRow.equals(gender)) {
+                index++;
+                if (index == stopRank) {
+                    return sum;
+                }
+
+                int num = Integer.parseInt(row.get(2));
+                sum += num;
+
+
+            }
+        }
+        return -1;
+    }
+
     /*
     example:Isabella born in 2012 would be Sophia if she was born in 2014.
      */
@@ -133,8 +153,14 @@ public class BabyBirth {
         return isRanked ? rankSum / index : -1;
     }
 
-    public static int getTotalBirthsRankedHigher(int year, String name, String gender){
+    public static int getTotalBirthsRankedHigher(int year, String name, String gender) {
 
+        CSVParser parser = getParser(year);
+        int rank = getRank(year, name, gender);
+        if (rank != -1) {
+            return calculateTotalBirth(rank, parser, gender);
+        }
+        return -1;
     }
 
     public static void tester() {
@@ -149,6 +175,8 @@ public class BabyBirth {
 //        System.out.println(rankH);
 //        double avgRank = getAverageRank("Jacob", "M");
 //        System.out.println(avgRank);
+        int total = getTotalBirthsRankedHigher(2012, "Ethan", "M");
+        System.out.println(total);
     }
 
     public static void main(String[] args) {
