@@ -1,4 +1,4 @@
-package src.stringsSecondAssignments;
+package src.model2.stringsSecondAssignments;
 
 public class Part1 {
     final static String TAA = "TAA";

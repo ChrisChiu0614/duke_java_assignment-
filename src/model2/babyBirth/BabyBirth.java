@@ -1,4 +1,4 @@
-package src.babyBirth;
+package src.model2.babyBirth;
 
 import edu.duke.*;
 import org.apache.commons.csv.*;

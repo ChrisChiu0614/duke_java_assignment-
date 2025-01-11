@@ -1,4 +1,4 @@
-package src.csv;
+package src.model2.csv;
 
 import edu.duke.FileResource;
 import org.apache.commons.csv.CSVParser;

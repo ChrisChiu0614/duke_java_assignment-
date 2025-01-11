@@ -1,4 +1,4 @@
-package src.stringsThirdAssignments;
+package src.model2.stringsThirdAssignments;
 
 import edu.duke.StorageResource;
 import edu.duke.URLResource;

@@ -1,4 +1,4 @@
-package src.stringsFirstAssignments;
+package src.model2.stringsFirstAssignments;
 
 public class Part2 {
     public static String findSimpleGene(String dna,String startCodon, String stopCodon){
