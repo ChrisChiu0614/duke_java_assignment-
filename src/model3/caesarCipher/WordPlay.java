@@ -21,13 +21,11 @@ public class WordPlay {
 
 
     public static String emphasize(String phrase, char ch){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(phrase);
         for(int i = 0; i < phrase.length(); i++){
             if(isSameChar(phrase.charAt(i),ch)){
                 char sign = (i&1)==0?'*':'+';
-                sb.append(sign);
-            }else{
-                sb.append(phrase.charAt(i));
+                sb.setCharAt(i,sign);
             }
 
         }
