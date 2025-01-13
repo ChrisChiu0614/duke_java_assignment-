@@ -3,6 +3,7 @@ package src.model3.caesarCipher;
 import java.util.Arrays;
 
 public class CaesarCipher {
+    int mainKey;
     private String alphabet;
     private String shiftAlphabet;
 
@@ -12,6 +13,10 @@ public class CaesarCipher {
     public CaesarCipher(int key){
         alphabet ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         shiftAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
+        mainKey = key;
+    }
+    public int getMainKey(){
+        return this.mainKey;
     }
 
     public String tempShiftAlphabet(int key){
@@ -25,8 +30,11 @@ public class CaesarCipher {
 
     // Decryption method
     public String decrypt(String data, int key) {
-        String shiftAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
-        return processText(data, shiftAlphabet, this.alphabet);
+        CaesarCipher cc = new CaesarCipher(26-mainKey);
+
+        //String shiftAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
+        //return processText(data, cc.shiftAlphabet, cc.alphabet);
+        return cc.encrypt(data);
     }
 
     // Core processing logic
@@ -112,14 +120,13 @@ public class CaesarCipher {
     }
 
     public static void main(String[] args) {
-        //testEncryptDecrypt();
-        //
-        //
-        CaesarCipher caesarCipher = new CaesarCipher(8);
-        int freq = caesarCipher.freqIndex("Gp  bqpok feiq cbbbbbbbbb");
-        System.out.println(freq);
-        int freq2 = caesarCipher.freqIndex("wvcvu vkiyv quq ggggggggu");
-        System.out.println(freq2);
+        String data = "At noon be in the conference room with your hat on for a surprise party. YELL LOUD!";
+        CaesarCipher cc = new CaesarCipher(8);
+        String encr = cc.encrypt(data);
+        System.out.println(encr);
+        String decr = cc.decrypt(encr, cc.mainKey);
+        System.out.println(decr);
+
 
     }
 }

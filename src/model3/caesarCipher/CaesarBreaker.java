@@ -131,9 +131,12 @@ public class CaesarBreaker {
     public void testDecrypt() {
         CaesarBreaker cb = new CaesarBreaker();
 
-        FileResource fr = new FileResource();
-        String encStr = encryptTwoKeys(fr.asString(), 23, 2);
+        //FileResource fr = new FileResource();
 
+        //String encStr = encryptTwoKeys(fr.asString(), 23, 2);
+        String data = "Hfs cpwewloj loks cd Hoto kyg Cyy.";
+        String encStr = encryptTwoKeys(data, 14, 24);
+        System.out.println("encSTR:"+encStr);
         String enc1 = cb.halfOfString(encStr, 0);
         String enc2 = cb.halfOfString(encStr, 1);
         int key1 = getKey(enc1);
@@ -161,8 +164,8 @@ public class CaesarBreaker {
 
     public static void main(String[] args) {
         CaesarBreaker cb = new CaesarBreaker();
-        //cb.testDecrypt();
-        cb.test();
+        cb.testDecrypt();
+        //cb.test();
 
     }
 }
