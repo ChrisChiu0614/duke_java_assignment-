@@ -35,14 +35,30 @@ public class CharactersInPlay {
         }
     }
     public void charactersWithNumParts(int num1, int num2){
+        for(int i = 0; i < names.size(); i++){
+            int count = counts.get(i);
+            if(count>=num1 && count<=num2){
+                System.out.println(names.get(i)+" "+counts.get(i));
+            }
 
+        }
     }
 
     public void tester(){
         findAllCharacters();;
+        charactersWithNumParts(10,15);
+
+        int max = 0;
         for(int i = 0; i < names.size(); i++){
-            System.out.println(names.get(i)+" "+counts.get(i));
+            int count = counts.get(i);
+
+            if(count>counts.get(max)){
+                max = i;
+
+            }
+
         }
+        //System.out.println(names.get(max)+" "+counts.get(max));
     }
 
     public static void main(String[] args) {
