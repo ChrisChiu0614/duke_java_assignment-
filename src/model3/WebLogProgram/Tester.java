@@ -24,11 +24,40 @@ public class Tester
         // complete method
         LogAnalyzer logAnalyzer = new LogAnalyzer();
         logAnalyzer.readFile(PATH+"/short-test_log");
+        //logAnalyzer.readFile(PATH+"/weblog-short_log");
         logAnalyzer.printAll();
+        int ips = logAnalyzer.countUniqueIPs();
+        System.out.println("ips:"+ips);
+        logAnalyzer.printAllHigherThanNum(200);
+        System.out.println("------");
+        ArrayList<String> ipOnDay =  logAnalyzer.uniqueIPVisitsOnDay("Sep 14");
+        System.out.println("Sep 14:"+ipOnDay.size());
+        ipOnDay.clear();
+        ipOnDay =  logAnalyzer.uniqueIPVisitsOnDay("Sep 30");
+        System.out.println("Sep 30:"+ipOnDay.size());
+
+        int ipsInRange = logAnalyzer.countUniqueIPsInRange(200,299);
+        System.out.println(ipsInRange);
+        ipsInRange = logAnalyzer.countUniqueIPsInRange(300,399);
+        System.out.println(ipsInRange);
+
     }
+
+    public void testLogAnalyzer2() {
+        LogAnalyzer logAnalyzer = new LogAnalyzer();
+        logAnalyzer.readFile(PATH+"/weblog1_log");
+        //logAnalyzer.printAllHigherThanNum(400);
+        ArrayList<String> ipOnDay =  logAnalyzer.uniqueIPVisitsOnDay("Mar 24");
+        System.out.println("Mar 24:"+ipOnDay.size());
+        int ipsInRange = logAnalyzer.countUniqueIPsInRange(300,399);
+        System.out.println(ipsInRange);
+    }
+
+
 
     public static void main(String[] args) {
         Tester test = new Tester();
-        test.testLogAnalyzer();
+        test.testLogAnalyzer2();
     }
+
 }
