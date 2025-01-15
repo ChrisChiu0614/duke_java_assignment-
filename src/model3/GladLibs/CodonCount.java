@@ -13,72 +13,67 @@ public class CodonCount {
     }
 
     private void buildCodonMap(int start, String dna){
-        int dnaLen = dna.length();
-        int end = start+3;
-
-        while(end<dnaLen){
-            String codon = dna.substring(start,end);
-            boolean mach = true;
-            for(char c:codon.toCharArray()) {
-                if(c!='C' && c!='G' && c!='T' && c!='A'){
-                    mach = false;
-                    break;
-                }
+        dnaMap.clear();
+        int num = 0;
+        int k = (dna.length()-start)/3;
+        while (num <k){
+            int head = (num*3)+start;
+            int tail =  head+3;
+            String codon = dna.substring(head,tail);
+            if(!dnaMap.containsKey(codon)){
+                dnaMap.put(codon,1);
+            }else{
+                dnaMap.put(codon,dnaMap.get(codon)+1);
             }
-            if(mach){
-                if(!dnaMap.containsKey(codon)){
-                    dnaMap.put(codon,1);
-                }else{
-                    dnaMap.put(codon,dnaMap.get(codon)+1);
-                }
-            }
-
-            start+=3;
-            end+=3;
+            num++;
         }
+
     }
 
     public String getMostCommonCodon(){
-        String maxKey = "";
+        int largest = 0;
+        String maxKey = null;
         for(String codon: dnaMap.keySet()){
 
-            if(maxKey.isEmpty()){
-                maxKey = codon;
-                continue;
-            }
-            if(dnaMap.get(codon)> dnaMap.get(maxKey)){
+            int current = dnaMap.get(codon);
+            if(current > largest){
+                largest = current;
                 maxKey = codon;
             }
         }
 
-        return dnaMap.get(maxKey).toString();
+        return maxKey;
     }
 
     public void printCodonCounts(int start, int end){
         for(String key : dnaMap.keySet()){
             int count = dnaMap.get(key);
             if(count>=start && count<=end){
-                System.out.println(key+" : "+count);
+                System.out.println(key+" : "+count+"\t");
             }
         }
     }
 
     public void tester(){
-        FileResource fr = new FileResource();
-        String input = fr.asString().toUpperCase();
-
-        for(int i = 0; i < input.length(); i++){
+        FileResource fr = new FileResource("src/model3/GladLibs/PracticeGladLibsData/dnaMystery1");
+        String input = fr.asString().toUpperCase().trim();
+        int max = 6;
+        for(int i = 0; i < max; i++){
             buildCodonMap(i,input);
+            System.out.println("--"+i+"--"+dnaMap);
+            String commonCodon = getMostCommonCodon();
+            System.out.println("comon:"+commonCodon);
+            printCodonCounts(4,4);
         }
 
-        String commonCodon = getMostCommonCodon();
-        System.out.println(commonCodon);
 
-        printCodonCounts(1,5);
+
+
     }
 
     public static void main(String[] args) {
         CodonCount cc = new CodonCount();
         cc.tester();
+
     }
 }
