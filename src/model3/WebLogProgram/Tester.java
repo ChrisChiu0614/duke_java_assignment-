@@ -45,17 +45,17 @@ public class Tester
 
     public void testLogAnalyzer2() {
         LogAnalyzer logAnalyzer = new LogAnalyzer();
-        logAnalyzer.readFile(PATH+"/weblog1_log");
+        logAnalyzer.readFile(PATH+"/weblog2_log");
         //logAnalyzer.printAllHigherThanNum(400);
-        ArrayList<String> ipOnDay =  logAnalyzer.uniqueIPVisitsOnDay("Mar 24");
-        System.out.println("Mar 24:"+ipOnDay.size());
-        int ipsInRange = logAnalyzer.countUniqueIPsInRange(300,399);
+        ArrayList<String> ipOnDay =  logAnalyzer.uniqueIPVisitsOnDay("Sep 24");
+        System.out.println("Sep 24:"+ipOnDay.size());
+        int ipsInRange = logAnalyzer.countUniqueIPsInRange(400,499);
         System.out.println(ipsInRange);
     }
 
     public void testCountingWebsiteVisits(){
         LogAnalyzer logAnalyzer = new LogAnalyzer();
-        logAnalyzer.readFile(PATH+"/weblog3-short_log");
+        logAnalyzer.readFile(PATH+"/weblog2_log");
         HashMap<String,Integer> countIPs = logAnalyzer.countVisitsPerIP();
         int max = logAnalyzer.mostNumberVisitsByIP(countIPs);
         //System.out.println(max);
@@ -66,7 +66,9 @@ public class Tester
         String dayWithMost = logAnalyzer.dayWithMostIPVisits(iPsForDays);
         System.out.println(dayWithMost);
         ArrayList<String> iPsWithMostVisitsOnDay = logAnalyzer.iPsWithMostVisitsOnDay(iPsForDays, "Sep 30");
+        System.out.println(iPsWithMostVisitsOnDay.size());
         System.out.println(iPsWithMostVisitsOnDay);
+
 
     }
 
