@@ -53,11 +53,29 @@ public class Tester
         System.out.println(ipsInRange);
     }
 
+    public void testCountingWebsiteVisits(){
+        LogAnalyzer logAnalyzer = new LogAnalyzer();
+        logAnalyzer.readFile(PATH+"/weblog3-short_log");
+        HashMap<String,Integer> countIPs = logAnalyzer.countVisitsPerIP();
+        int max = logAnalyzer.mostNumberVisitsByIP(countIPs);
+        //System.out.println(max);
+        ArrayList<String> ismostVisits = logAnalyzer.iPsMostVisits(countIPs);
+        //System.out.println(ismostVisits);
+        HashMap<String, ArrayList<String>> iPsForDays = logAnalyzer.iPsForDays();
+        System.out.println(iPsForDays);
+        String dayWithMost = logAnalyzer.dayWithMostIPVisits(iPsForDays);
+        System.out.println(dayWithMost);
+        ArrayList<String> iPsWithMostVisitsOnDay = logAnalyzer.iPsWithMostVisitsOnDay(iPsForDays, "Sep 30");
+        System.out.println(iPsWithMostVisitsOnDay);
+
+    }
+
 
 
     public static void main(String[] args) {
         Tester test = new Tester();
-        test.testLogAnalyzer2();
+        //test.testLogAnalyzer2();
+        test.testCountingWebsiteVisits();
     }
 
 }
