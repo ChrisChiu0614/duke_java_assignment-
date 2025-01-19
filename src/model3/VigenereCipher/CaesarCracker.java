@@ -33,7 +33,7 @@ public class CaesarCracker {
         return counts;
     }
 
-    private int getKey(String s) {
+    public int getKey(String s) {
         int[] counts = countLetters(s);
         int maxIndex = maxIndex(counts);
         int mostCommonPos = mostCommon - 'a';

@@ -25,9 +25,11 @@ public class CaesarCipher {
     }
 
     private char transformLetter(char c, String from, String to) {
-        int idx = from.indexOf(c);
+        char upperCase = Character.toUpperCase(c);
+        int idx = from.indexOf(upperCase);
         if (idx != -1) {
-            return to.charAt(idx);
+            char res = Character.isUpperCase(c)?to.charAt(idx):Character.toLowerCase(to.charAt(idx));
+            return res;
         }
         return c;
     }
