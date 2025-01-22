@@ -32,23 +32,20 @@ public class EarthQuakeClient {
                 .collect(Collectors.toCollection(() -> new ArrayList<QuakeEntry>()));
     }
 
-    public void filterByPhrase(ArrayList<QuakeEntry> quakeData,
+    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData,
                                String where,
                                String phrase) {
-        ArrayList<QuakeEntry> answer;
 
-        switch (where.toLowerCase()){
-            case "start":
-                quakeData.stream().filter(quakeEntry -> quakeEntry.getInfo().substring())
-                break;
-            case "end":
-
-                break;
-            case "any":
-
-                break;
-        }
-
+        return quakeData.stream().filter(quakeEntry -> {
+            String[] logs = quakeEntry.getInfo().split("=");
+            String log = logs[logs.length-1];
+            return switch (where.toLowerCase()) {
+                case "start" -> log.startsWith(phrase);
+                case "end" -> log.endsWith(phrase);
+                case "any" -> log.contains(phrase);
+                default -> throw new IllegalArgumentException("Invalid value for 'where': " + where);
+            };
+        }).collect(Collectors.toCollection(()->new ArrayList<>()));
 
     }
 
@@ -112,11 +109,29 @@ public class EarthQuakeClient {
         ArrayList<QuakeEntry> depthList = filterByDepth(list, minDepth, maxDepth);
         System.out.println("Find quakes with depth between " + minDepth + " and " + maxDepth);
         for (QuakeEntry qe : depthList) {
-
             System.out.println(qe.toString());
-
         }
         System.out.println("Found " + depthList.size() + " quakes that match that criteria");
+    }
+
+    public void quakesByPhrase(){
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedatasmall.atom";
+        ArrayList<QuakeEntry> list = parser.read(source);
+        System.out.println("read data for " + list.size() + " quakes");
+
+        String[] wheres = new String[]{"end","any","start"};
+        String[] phases = new String[]{"California","Can","Explosion"};
+
+        for(int i = 0; i < wheres.length; i++) {
+            ArrayList<QuakeEntry> phraseList = filterByPhrase(list, wheres[i], phases[i]);
+            for (QuakeEntry qe : phraseList) {
+                System.out.println(qe.toString());
+            }
+            System.out.println("Found " + phraseList.size() + " quakes that match " + phases[i] + " at " + wheres[i]);
+            System.out.println("--------------------------------------------------------------------------------");
+        }
+
     }
 
 
@@ -136,7 +151,8 @@ public class EarthQuakeClient {
         EarthQuakeClient eqc = new EarthQuakeClient();
         //eqc.bigQuakes();
         //eqc.closeToMe();
-        eqc.quakesOfDepth();
+        //eqc.quakesOfDepth();
+        eqc.quakesByPhrase();
     }
 
 }
