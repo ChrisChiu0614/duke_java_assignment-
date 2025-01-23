@@ -100,10 +100,11 @@ public class EarthQuakeClient {
 
     public void quakesOfDepth() {
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedatasmall.atom";
+        //String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedatasmall.atom";
+        String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("read data for " + list.size() + " quakes");
-        double minDepth = -10000.0;
+        double minDepth = -8000.0;
         double maxDepth = -5000.0;
 
         ArrayList<QuakeEntry> depthList = filterByDepth(list, minDepth, maxDepth);
@@ -116,12 +117,13 @@ public class EarthQuakeClient {
 
     public void quakesByPhrase(){
         EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedatasmall.atom";
+        //String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedatasmall.atom";
+        String source = "./src/model4/SearchingEarthquakeDataStarterProgram/data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list = parser.read(source);
         System.out.println("read data for " + list.size() + " quakes");
 
         String[] wheres = new String[]{"end","any","start"};
-        String[] phases = new String[]{"California","Can","Explosion"};
+        String[] phases = new String[]{"California","Creek","Explosion"};
 
         for(int i = 0; i < wheres.length; i++) {
             ArrayList<QuakeEntry> phraseList = filterByPhrase(list, wheres[i], phases[i]);
@@ -152,7 +154,7 @@ public class EarthQuakeClient {
         //eqc.bigQuakes();
         //eqc.closeToMe();
         //eqc.quakesOfDepth();
-        eqc.quakesByPhrase();
+        //eqc.quakesByPhrase();
     }
 
 }
