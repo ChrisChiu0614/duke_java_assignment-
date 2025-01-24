@@ -12,7 +12,14 @@ public class QuakeSortInPlace {
     public QuakeSortInPlace() {
         // TODO Auto-generated constructor stub
     }
-   
+    public int getLargestDepth(ArrayList<QuakeEntry> quakes, int from){
+        if(null==quakes || from<0){
+            throw new IllegalArgumentException();
+        }
+
+    }
+
+
     public int getSmallestMagnitude(ArrayList<QuakeEntry> quakes, int from) {
         int minIdx = from;
         for (int i=from+1; i< quakes.size(); i++) {
