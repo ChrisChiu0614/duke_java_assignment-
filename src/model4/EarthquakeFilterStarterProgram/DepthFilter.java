@@ -12,4 +12,9 @@ public class DepthFilter implements Filter{
     public boolean satisfies(QuakeEntry qe) {
         return qe.getDepth()>=minimum && qe.getDepth()<=maximum;
     }
+
+    @Override
+    public String getName() {
+        return "Filters used are: "+this.getClass().getName();
+    }
 }

@@ -18,4 +18,9 @@ public class PhraseFilter implements Filter {
             default -> false;
         };
     }
+
+    @Override
+    public String getName() {
+        return "Filters used are: "+this.getClass().getName();
+    }
 }

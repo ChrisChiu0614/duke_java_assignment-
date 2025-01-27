@@ -16,7 +16,7 @@ public class QuakeSortInPlace {
         if(null==quakes || from<0){
             throw new IllegalArgumentException();
         }
-
+        return 0;
     }
 
 
