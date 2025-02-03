@@ -16,7 +16,30 @@ public class QuakeSortInPlace {
         if(null==quakes || from<0){
             throw new IllegalArgumentException();
         }
-        return 0;
+        int maxIndex = from;
+        double max = Double.NEGATIVE_INFINITY;
+        for(int i = from; i < quakes.size(); i++){
+            double depth = quakes.get(i).getDepth();
+            System.out.println("--depth:"+depth);
+            if(depth>max){
+                max = depth;
+                maxIndex = i;
+            }
+        }
+        System.out.println("max "+max);
+        return maxIndex;
+    }
+
+    public void sortByLargestDepth(ArrayList<QuakeEntry> quakes){
+        for(int i = 0; i < quakes.size(); i++){
+            int index = getLargestDepth(quakes,i);
+            System.out.println("-----"+quakes.get(index).toString());
+            QuakeEntry oldQe = quakes.get(i);
+            QuakeEntry newQe = quakes.get(index);
+            quakes.set(i,newQe);
+            quakes.set(index,oldQe);
+        }
+
     }
 
 
@@ -45,16 +68,24 @@ public class QuakeSortInPlace {
     public void testSort() {
         EarthQuakeParser parser = new EarthQuakeParser(); 
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
-        String source = "data/nov20quakedatasmall.atom";
+        String source = "./src/model4/EarthquakeSortStarterProgram/data/nov20quakedatasmall.atom";
         //String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);  
        
         System.out.println("read data for "+list.size()+" quakes");    
         sortByMagnitude(list);
-        for (QuakeEntry qe: list) { 
+//        for (QuakeEntry qe: list) {
+//            System.out.println(qe);
+//        }
+        sortByLargestDepth(list);
+        for (QuakeEntry qe: list) {
             System.out.println(qe);
-        } 
-        
+        }
+
+    }
+
+    public void onePassBubbleSort(ArrayList<QuakeEntry> quakeData, int numSorted){
+
     }
     
     public void createCSV() {
