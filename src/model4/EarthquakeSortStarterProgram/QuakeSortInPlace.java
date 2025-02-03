@@ -33,11 +33,15 @@ public class QuakeSortInPlace {
     public void sortByLargestDepth(ArrayList<QuakeEntry> quakes){
         for(int i = 0; i < quakes.size(); i++){
             int index = getLargestDepth(quakes,i);
-            System.out.println("-----"+quakes.get(index).toString());
+
             QuakeEntry oldQe = quakes.get(i);
             QuakeEntry newQe = quakes.get(index);
             quakes.set(i,newQe);
             quakes.set(index,oldQe);
+            if(i==(70-1)){
+                System.out.println("-----"+quakes.get(index).toString());
+                break;
+            }
         }
 
     }
@@ -69,8 +73,9 @@ public class QuakeSortInPlace {
         EarthQuakeParser parser = new EarthQuakeParser(); 
         //String source = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.atom";
         //String source = "./src/model4/EarthquakeSortStarterProgram/data/nov20quakedatasmall.atom";
-        String source = "./src/model4/EarthquakeSortStarterProgram/data/earthquakeDataSampleSix2.atom";
+        //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthquakeDataSampleSix2.atom";
         //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthquakeDataSampleSix1.atom";
+        String source = "./src/model4/EarthquakeSortStarterProgram/data/earthQuakeDataDec6sample1.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);
        
         System.out.println("read data for "+list.size()+" quakes");    
@@ -78,10 +83,10 @@ public class QuakeSortInPlace {
 //        for (QuakeEntry qe: list) {
 //            System.out.println(qe);
 //        }
-//        sortByLargestDepth(list);
+        //sortByLargestDepth(list);
         //sortByMagnitudeWithBubbleSort(list);
-        //sortByMagnitudeWithBubbleSortWithCheck(list);
-        sortByMagnitudeWithCheck(list);
+        sortByMagnitudeWithBubbleSortWithCheck(list);
+        //sortByMagnitudeWithCheck(list);
         System.out.println("EarthQuakes in sorted order:");
         for (QuakeEntry qe: list) {
             System.out.println(qe);
