@@ -1,3 +1,4 @@
+package src.model4.EfficientSortStarterProgram;
 
 public class QuakeEntry implements Comparable<QuakeEntry>{
 	
@@ -31,18 +32,21 @@ public class QuakeEntry implements Comparable<QuakeEntry>{
 
 	@Override
 	public int compareTo(QuakeEntry loc) {
-	    return Double.compare(magnitude, loc.getMagnitude());
+	    //return Double.compare(magnitude, loc.getMagnitude());
 	    // Here is another way to sort by Magnitude
-	    /*
+
 	    if (magnitude < loc.getMagnitude()){
 	        return -1;
 	       }
 	    if (magnitude > loc.getMagnitude()){
 	        return 1;
 	       }
-	    return 0;
+		else{
+			//DESC
+			return -Double.compare(depth, loc.getDepth());
+		}
 	    
-	    */
+
 	    
 	   //  Below here sorts by Location
 	    /*
