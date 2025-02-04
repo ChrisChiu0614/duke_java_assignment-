@@ -75,9 +75,12 @@ public class QuakeSortInPlace {
         //String source = "./src/model4/EarthquakeSortStarterProgram/data/nov20quakedatasmall.atom";
         //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthquakeDataSampleSix2.atom";
         //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthquakeDataSampleSix1.atom";
-        String source = "./src/model4/EarthquakeSortStarterProgram/data/earthQuakeDataDec6sample1.atom";
+        //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthQuakeDataDec6sample1.atom";
+        //String source = "./src/model4/EarthquakeSortStarterProgram/data/earthQuakeDataDec6sample2.atom";
+        String source = "./src/model4/EarthquakeSortStarterProgram/data/earthQuakeDataWeekDec6sample1.atom";
+
         ArrayList<QuakeEntry> list  = parser.read(source);
-       
+
         System.out.println("read data for "+list.size()+" quakes");    
         //sortByMagnitude(list);
 //        for (QuakeEntry qe: list) {
