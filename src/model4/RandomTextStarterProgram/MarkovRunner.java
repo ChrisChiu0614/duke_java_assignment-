@@ -8,14 +8,59 @@ package src.model4.RandomTextStarterProgram;
 
 import edu.duke.*;
 
+import java.util.ArrayList;
+
 public class MarkovRunner {
-    public void runMarkovZero() {
-		String filePath = "./src/model4/RandomTextStarterProgram/data/alice.txt";
+	public void runMarkovModel() {
+		String filePath = "./src/model4/RandomTextStarterProgram/data/confucius.txt";
+		FileResource fr = new FileResource(filePath);
+		String st = fr.asString();
+		st = st.replace('\n', ' ');
+		MarkovModel markov = new MarkovModel(8);
+		markov.setRandom(365);
+		markov.setTraining(st);
+		for(int k=0; k < 3; k++){
+			String text = markov.getRandomText(500);
+			printOut(text);
+		}
+	}
+
+	public void runMarkovFour() {
+		String filePath = "./src/model4/RandomTextStarterProgram/data/confucius.txt";
+		FileResource fr = new FileResource(filePath);
+		String st = fr.asString();
+		st = st.replace('\n', ' ');
+		MarkovFour markov = new MarkovFour();
+		markov.setRandom(371);
+		markov.setTraining(st);
+		for(int k=0; k < 3; k++){
+			String text = markov.getRandomText(500);
+			printOut(text);
+		}
+	}
+
+	public void runMarkovOne() {
+		String filePath = "./src/model4/RandomTextStarterProgram/data/confucius.txt";
+		FileResource fr = new FileResource(filePath);
+		String st = fr.asString();
+		st = st.replace('\n', ' ');
+		MarkovOne markov = new MarkovOne ();
+		markov.setRandom(273);
+		markov.setTraining(st);
+		for(int k=0; k < 3; k++){
+			String text = markov.getRandomText(500);
+			printOut(text);
+		}
+
+	}
+
+	public void runMarkovZero() {
+		String filePath = "./src/model4/RandomTextStarterProgram/data/confucius.txt";
 		FileResource fr = new FileResource(filePath);
 		String st = fr.asString();
 		st = st.replace('\n', ' ');
 		MarkovZero markov = new MarkovZero();
-		markov.setRandom(101);
+		markov.setRandom(88);
 		markov.setTraining(st);
 		for(int k=0; k < 3; k++){
 			String text = markov.getRandomText(500);
