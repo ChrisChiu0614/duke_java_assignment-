@@ -60,5 +60,29 @@ public class MarkovRunnerWithInterface {
 		}
 		System.out.println("\n----------------------------------");
 	}
-	
+
+	public void testHashMap(){
+		EfficientMarkovModel mtwo = new EfficientMarkovModel(2);
+		String st = "yes-this-is-a-thin-pretty-pink-thistle";
+		int size = 50;
+		int seed = 42;
+		runModel(mtwo, st, size, seed);
+
+	}
+
+	public void compareMethods(){
+		EfficientMarkovModel m1 = new EfficientMarkovModel(2);
+		EfficientMarkovModel m2 = new EfficientMarkovModel(2);
+		int size = 1000;
+		int seed = 42;
+		String pathWithFile = "./src/model4/RandomTextStarterProgram/data/hawthorne.txt";
+		FileResource fr = new FileResource(pathWithFile);
+		String st = fr.asString();
+		System.out.println("start:"+System.nanoTime());
+		runModel(m1, st, size, seed);
+		System.out.println("end:"+System.nanoTime());
+		runModel(m2, st, size, seed);
+		System.out.println("end1:"+System.nanoTime());
+	}
+
 }

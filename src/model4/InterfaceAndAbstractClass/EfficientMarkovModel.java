@@ -12,7 +12,8 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
     public EfficientMarkovModel(int number) {
         myRandom = new Random();
         n = number;
-        printHashMapInfo();
+        markovMap = new HashMap<>();
+
     }
 
     public void setRandom(int seed){
@@ -22,20 +23,20 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
     public void setTraining(String s){
         myText = s.trim();
         markovMap = buildMap();
+        printHashMapInfo();
     }
 
     public HashMap<String, ArrayList<String>> buildMap(){
         HashMap<String, ArrayList<String>> cach = new HashMap<>();
+
         int index = 0;
         while(index <= myText.length()-n){
             String key = myText.substring(index, index+n);
+            String word =index +key.length() < myText.length()?myText.substring(index+key.length(),index+key.length()+1):"";
             if(cach.containsKey(key)){
-                ArrayList<String> list = cach.get(key);
-                String word = myText.substring(index+key.length(),index+key.length()+1);
-                list.add(word);
+                cach.get(key).add(word);
             }else{
                 ArrayList<String> list = new ArrayList<>();
-                String word = myText.substring(index+key.length(),index+key.length()+1);
                 list.add(word);
                 cach.put(key,list);
             }
@@ -87,7 +88,6 @@ public class EfficientMarkovModel extends AbstractMarkovModel{
         System.out.println("2. largestKey: "+largestKey);
         System.out.println("3. smallestKey: "+smallestKey);
     }
-
 
 
     @Override
